@@ -5,7 +5,8 @@
 
   ### 질문
 
-  JavaScript의 `Array.concat` 함수를 타입 시스템에서 구현하세요. 타입은 두 인수를 받고, 인수를 왼쪽부터 concat한 새로운 배열을 반환해야 합니다.
+  JavaScript의 `Array.concat` 함수를 타입 시스템에서 구현하세요.
+  타입은 두 인수를 받고, 인수를 왼쪽부터 concat한 새로운 배열을 반환해야 합니다.
 
   예시:
 
@@ -18,7 +19,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type Concat<T, U> = any
+type Concat<T extends readonly any[], U extends readonly any[]> = [...T, ...U]
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
