@@ -5,7 +5,8 @@
 
   ### 질문
 
-  조건 `C`, 참일 때 반환하는 타입 `T`, 거짓일 때 반환하는 타입 `F`를 받는 타입 `If`를 구현하세요. `C`는 `true` 또는 `false`이고, `T`와 `F`는 아무 타입입니다.
+  조건 `C`, 참일 때 반환하는 타입 `T`, 거짓일 때 반환하는 타입 `F`를 받는 타입 `If`를 구현하세요.
+  `C`는 `true` 또는 `false`이고, `T`와 `F`는 아무 타입입니다.
 
   예시:
 
@@ -19,7 +20,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type If<C, T, F> = any
+type If<C extends boolean, T, F> = C extends true ? T : F
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
