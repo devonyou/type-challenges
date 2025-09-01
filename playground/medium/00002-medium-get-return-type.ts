@@ -25,7 +25,8 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type MyReturnType<T> = any
+type MyReturnType<T> =
+  T extends (...args: any) => infer R ? R : never
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
