@@ -5,7 +5,8 @@
 
   ### 질문
 
-  JavaScript의 `Array.includes` 함수를 타입 시스템에서 구현하세요. 타입은 두 인수를 받고, `true` 또는 `false`를 반환해야 합니다.
+  JavaScript의 `Array.includes` 함수를 타입 시스템에서 구현하세요.
+  타입은 두 인수를 받고, `true` 또는 `false`를 반환해야 합니다.
 
   예시:
 
@@ -18,7 +19,12 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type Includes<T extends readonly any[], U> = any
+type Includes<T extends readonly any[], U> =
+  T extends [infer First, ...infer Rest] ?
+    Equal<First, U> extends true ?
+      true
+      : Includes<Rest, U>
+    : false
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
