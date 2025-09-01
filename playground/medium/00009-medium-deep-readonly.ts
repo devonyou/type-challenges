@@ -7,7 +7,8 @@
 
   객체의 프로퍼티와 모든 하위 객체를 재귀적으로 읽기 전용으로 설정하는 제네릭 `DeepReadonly<T>`를 구현하세요.
 
-  이 챌린지에서는 타입 파라미터 `T`를 객체 타입으로 제한하고 있습니다. 객체뿐만 아니라 배열, 함수, 클래스 등 가능한 다양한 형태의 타입 파라미터를 사용하도록 도전해 보세요.
+  이 챌린지에서는 타입 파라미터 `T`를 객체 타입으로 제한하고 있습니다.
+  객체뿐만 아니라 배열, 함수, 클래스 등 가능한 다양한 형태의 타입 파라미터를 사용하도록 도전해 보세요.
 
   예시:
 
@@ -35,8 +36,11 @@
 */
 
 /* _____________ 여기에 코드 입력 _____________ */
-
-type DeepReadonly<T> = any
+type DeepReadonly<T> = {
+  readonly [p in keyof T]: T[p] extends object ?
+    T[p] extends Function ?
+      T[p] : DeepReadonly<T[p]> : T[p]
+}
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
