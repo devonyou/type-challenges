@@ -28,7 +28,12 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type MyOmit<T, K> = any
+type MyExclude<T, U> = T extends U ? never : T
+
+type MyOmit<T, K extends keyof T> = {
+  // [p in keyof T as p extends K ? never : p]: T[p]
+  [p in keyof T as MyExclude<p, K>]: T[p]
+}
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
