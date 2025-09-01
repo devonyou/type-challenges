@@ -20,7 +20,11 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type TupleToUnion<T> = any
+// type TupleToUnion<T extends Array<any>> =
+//   T extends [infer U, ...infer R] ?
+//     U | TupleToUnion<R> : never
+
+type TupleToUnion<T extends Array<any>> = T[number]
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
