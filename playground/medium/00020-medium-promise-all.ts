@@ -5,7 +5,11 @@
 
   ### 질문
 
-  Type the function `PromiseAll` that accepts an array of PromiseLike objects, the returning value should be `Promise<T>` where `T` is the resolved result array.
+  Type the function `PromiseAll` that accepts an array of PromiseLike objects,
+  the returning value should be `Promise<T>` where `T` is the resolved result array.
+
+  PromiseLike 객체 배열을 받는 `PromiseAll` 함수를 입력하세요.
+  반환 값은 `Promise<T>`여야 하며, 여기서 `T`는 해결된 결과 배열입니다.
 
   ```ts
   const promise1 = Promise.resolve(3);
@@ -23,7 +27,9 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-declare function PromiseAll(values: any): any
+declare function PromiseAll<T extends any[]>(values: readonly [...T]): Promise<{
+  [p in keyof T]: Awaited<T[p]>
+}>
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
