@@ -7,7 +7,9 @@
 
   때때로 유니온 타입의 특정 속성을 기준으로 조회할 수도 있습니다.
 
-  이 챌린지에서는 유니온 타입 `Cat | Dog`에서 공통으로 사용하는 `type` 필드를 기준으로 해당하는 타입을 얻고자 합니다. 다시 말해서, 다음 예시에서는 `LookUp<Cat | Dog, 'dog'>`으로 `Dog` 타입을, `LookUp<Cat | Dog, 'cat'>`으로 `Cat` 타입을 얻을 수 있습니다.
+  이 챌린지에서는 유니온 타입 `Cat | Dog`에서 공통으로 사용하는 `type` 필드를 기준으로 해당하는 타입을 얻고자 합니다.
+  다음 예시에서는 `LookUp<Cat | Dog, 'dog'>`으로 `Dog` 타입을,
+  `LookUp<Cat | Dog, 'cat'>`으로 `Cat` 타입을 얻을 수 있습니다.
 
   ```ts
   interface Cat {
@@ -29,7 +31,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type LookUp<U, T> = any
+type LookUp<U, T> = U extends { type: string } ? U : never
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
