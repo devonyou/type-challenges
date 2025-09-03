@@ -18,7 +18,8 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type TrimLeft<S extends string> = any
+type Sep = ' ' | '\n' | '\t'
+type TrimLeft<S extends string> = S extends `${Sep}${infer R}` ? TrimLeft<R> : S
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
