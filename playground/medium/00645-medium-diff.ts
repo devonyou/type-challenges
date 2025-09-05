@@ -12,7 +12,14 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type Diff<O, O1> = any
+type Diff<O1, O2> = {
+  [p in Exclude<keyof O1 | keyof O2, keyof O1 & keyof O2>]:
+  p extends keyof O1
+    ? O1[p]
+    : p extends keyof O2
+      ? O2[p]
+      : never
+}
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
