@@ -5,7 +5,8 @@
 
   ### 질문
 
-  Implement Python liked `any` function in the type system. A type takes the Array and returns `true` if any element of the Array is true. If the Array is empty, return `false`.
+  Implement Python liked `any` function in the type system.
+  A type takes the Array and returns `true` if any element of the Array is true. If the Array is empty, return `false`.
 
   Python의 `any` function을 타입 시스템으로 구현하세요
 
@@ -23,7 +24,9 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type AnyOf<T extends readonly any[]> = any
+type Falsy = 0 | false | '' | null | undefined | [] | Record<string, never>
+
+type AnyOf<T extends readonly any[]> = T[number] extends Falsy ? false : true
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
