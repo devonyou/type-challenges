@@ -5,7 +5,8 @@
 
   ### 질문
 
-  input type으로 `T`를 받는 IsNever type을 구현하세요. 만약 `T`의 유형이 `never`으로 확인되면 `true`를 반환하고 아니면 `false`를 반환합니다
+  input type으로 `T`를 받는 IsNever type을 구현하세요.
+  만약 `T`의 유형이 `never`으로 확인되면 `true`를 반환하고 아니면 `false`를 반환합니다
 
   예시:
 
@@ -22,7 +23,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type IsNever<T> = any
+type IsNever<T> = Record<string, T> extends Record<string, never> ? true : false
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
